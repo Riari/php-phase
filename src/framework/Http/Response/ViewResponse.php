@@ -3,7 +3,6 @@
 namespace Phase\Http\Response;
 
 use Symfony\Component\HttpFoundation\Response;
-
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
