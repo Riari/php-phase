@@ -26,25 +26,27 @@ class ExamplePhase extends Phase
 {
     public function handle(Request $request, array $params, Dot $state): Response
     {
-        // Here's where you do something with the request. Note the three method parameters. In reverse order, they are:
+        // Here's where you do something with the request. Note the three method parameters.
+        // In reverse order, they are:
 
-        // Dot $state - this is a collection of values you can pass between phases. In the first phase of a route, it's empty
-        // and ready to be written to.
+        // Dot $state - this is a collection of values you can pass between phases.
+        // In the first phase of a route, it's empty and ready to be written to.
         $state->add('some.value', 1);
         $someValue = $state->get('some.value'); // 1
 
-        // array $params - this is a simple array of parameter values from the resolved route. You could approximate
-        // Laravel's explicit route model binding feature by writing a phase to do it like so:
+        // array $params - this is a simple array of parameter values from the resolved route.
+        // You could approximate Laravel's explicit route model binding feature by writing a
+        // phase to do it like so:
         if (isset($params['post']))
         {
             $state->add('models.post', Post::get($params['post']));
         }
 
-        // Request $request - a Symfony request object for the current request. This would be useful for things like
-        // authentication phases.
+        // Request $request - a Symfony request object for the current request.
+        // This would be useful for things like authentication phases.
 
-        // Phases ultimately return responses. If a phase is supposed to terminate, it can return a concrete response
-        // like this:
+        // Phases ultimately return responses. If a phase is supposed to terminate, it can
+        // directly return a response like this:
         return new ViewResponse('template.html', ['someValue' => $someValue]);
 
         // Otherwise, it can proceed to the next phase for the route like this:
