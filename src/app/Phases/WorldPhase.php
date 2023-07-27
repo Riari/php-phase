@@ -14,6 +14,6 @@ class WorldPhase extends Phase
     {
         $state->add('world', "World");
 
-        return $this->next($request, $state);
+        return $this->next($request, $params, $state);
     }
 }
