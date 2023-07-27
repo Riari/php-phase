@@ -18,10 +18,10 @@ abstract class Phase // implements IPhase
         $this->next = $next;
     }
 
-    public abstract function handle(Request $request, Dot $state): Response;
+    public abstract function handle(Request $request, array $params, Dot $state): Response;
 
-    public function next(Request $request, Dot $state): Response
+    public function next(Request $request, $params, Dot $state): Response
     {
-        return call_user_func($this->next, $request, $state);
+        return call_user_func($this->next, $request, $params, $state);
     }
 }

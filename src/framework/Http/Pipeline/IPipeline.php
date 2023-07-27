@@ -11,5 +11,5 @@ use Symfony\Component\HttpFoundation\Response;
  */
 interface IPipeline
 {
-    public function run(Request $request, $state = new Dot): Response;
+    public function run(Request $request, array $params, Dot $state = new Dot): Response;
 }

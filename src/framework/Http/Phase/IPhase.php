@@ -22,7 +22,8 @@ interface IPhase
      * Handle the request. This may execute business logic or execute one or more actions.
      * 
      * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param array $params
      * @param \Abdar\Dot $state
      */
-    public function handle(Request $request, Dot $state): Response;
+    public function handle(Request $request, array $params, Dot $state): Response;
 }
