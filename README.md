@@ -19,7 +19,7 @@ namespace App\Phases;
 
 use Adbar\Dot;
 use Phase\Http\Phase\Phase;
-use Symfony\Component\HttpFoundation\Request;
+use Phase\Http\Response\ViewResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 class DoThing extends Phase
