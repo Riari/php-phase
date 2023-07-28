@@ -11,6 +11,6 @@ class ReadParam extends Phase
 {
     public function handle(Dot $state): Response
     {
-        return new ViewResponse('greeting.html', ['greeting' => $this->params['name']]);
+        return new ViewResponse('greeting', ['greeting' => $this->params['name']]);
     }
 }

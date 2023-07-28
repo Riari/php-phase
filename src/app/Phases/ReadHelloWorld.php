@@ -15,6 +15,6 @@ class ReadHelloWorld extends Phase
         $world = $state->get('world');
         $greeting = "{$hello} {$world}!";
 
-        return new ViewResponse('greeting.html', ['greeting' => $greeting]);
+        return new ViewResponse('greeting', ['greeting' => $greeting]);
     }
 }

@@ -15,6 +15,6 @@ class ReadPost extends Phase
     {
         $post = Post::find($this->params['id']);
 
-        return new ViewResponse('post/single.html', ['title' => $post->title, 'content' => $post->content]);
+        return new ViewResponse('post.single', ['post' => $post]);
     }
 }
