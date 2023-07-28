@@ -2,7 +2,7 @@
 
 namespace Phase\Http\Phase;
 
-use Abdar\Dot;
+use Adbar\Dot;
 use Closure;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
