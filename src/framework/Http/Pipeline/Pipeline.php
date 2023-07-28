@@ -25,16 +25,16 @@ class Pipeline implements IPipeline
     {
         $pipeline = array_reduce(
             array_reverse($this->phases),
-            function ($nextClosure, $phaseClass) {
-                return function ($request, $params, $state) use ($nextClosure, $phaseClass) {
-                    $phase = new $phaseClass($nextClosure);
-                    return $phase->handle($request, $params, $state);
+            function ($nextClosure, $phaseClass) use ($request, $params) {
+                return function ($state) use ($nextClosure, $phaseClass, $request, $params) {
+                    $phase = new $phaseClass($nextClosure, $request, $params);
+                    return $phase->handle($state);
                 };
             },
             // Dummy closure to make this work. Maybe there's a nicer way of handling this.
-            function () {}
+            fn() => null
         );
 
-        return $pipeline($request, $params, $state);
+        return $pipeline($state);
     }
 }

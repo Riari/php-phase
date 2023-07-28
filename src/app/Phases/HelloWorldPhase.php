@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class HelloWorldPhase extends Phase
 {
-    public function handle(Request $request, array $params, Dot $state): Response
+    public function handle(Dot $state): Response
     {
         $hello = $state->get('hello');
         $world = $state->get('world');

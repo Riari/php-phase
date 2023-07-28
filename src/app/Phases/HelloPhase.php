@@ -10,10 +10,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 class HelloPhase extends Phase
 {
-    public function handle(Request $request, array $params, Dot $state): Response
+    public function handle(Dot $state): Response
     {
         $state->add('hello', "Hello");
 
-        return $this->next($request, $params, $state);
+        return $this->next($state);
     }
 }

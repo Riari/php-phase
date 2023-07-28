@@ -10,10 +10,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 class WorldPhase extends Phase
 {
-    public function handle(Request $request, array $params, Dot $state): Response
+    public function handle(Dot $state): Response
     {
         $state->add('world', "World");
 
-        return $this->next($request, $params, $state);
+        return $this->next($state);
     }
 }

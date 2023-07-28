@@ -11,8 +11,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ShowParamPhase extends Phase
 {
-    public function handle(Request $request, array $params, Dot $state): Response
+    public function handle(Dot $state): Response
     {
-        return new ViewResponse('greeting.html', ['greeting' => $params['name']]);
+        return new ViewResponse('greeting.html', ['greeting' => $this->params['name']]);
     }
 }
