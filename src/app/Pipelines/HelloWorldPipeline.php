@@ -2,15 +2,15 @@
 
 namespace App\Pipelines;
 
-use App\Phases\HelloPhase;
-use App\Phases\HelloWorldPhase;
-use App\Phases\WorldPhase;
+use App\Phases\ReadHelloWorld;
+use App\Phases\WriteHello;
+use App\Phases\WriteWorld;
 use Phase\Http\Pipeline\Pipeline;
 
 class HelloWorldPipeline extends Pipeline
 {
     public function __construct()
     {
-        $this->addAll([HelloPhase::class, WorldPhase::class, HelloWorldPhase::class]);
+        $this->addAll([WriteHello::class, WriteWorld::class, ReadHelloWorld::class]);
     }
 }
