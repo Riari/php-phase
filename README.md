@@ -48,7 +48,7 @@ class DoThing extends Phase
 
         // Phases ultimately return responses.
         // If a phase is supposed to terminate, it can directly return a response like this:
-        return new ViewResponse('template.html', ['someValue' => $someValue]);
+        return new ViewResponse('blade.view', ['someValue' => $someValue]);
 
         // Otherwise, it can proceed to the next phase for the route like this:
         return $this->next($state);
@@ -59,7 +59,7 @@ class DoThing extends Phase
 A definition for a route with just one phase associated with it looks like this:
 
 ```php
-$r->addRoute('GET', '/example/{param}', [DoThing::class]);
+$r->addRoute('GET', '/example/{param}', [DoSomethingWithParam::class]);
 ```
 
 The main issue with phases is the rigid interface. There's no DI or anything like that yet, and being forced to use the same `handle` method for every phase you implement (as opposed to pointing routes to custom methods) is not a great experience. I'm focusing on ways to improve that aspect.
