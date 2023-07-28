@@ -2,6 +2,7 @@
 
 namespace Phase\App;
 
+use Illuminate\Database\Capsule\Manager as DatabaseManager;
 use FastRoute\Dispatcher;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -11,17 +12,39 @@ use Phase\Http\Route\Router;
 
 class App
 {
-    private string $pathToApp;
-    private Router $router;
+    private readonly Router $router;
+    private readonly DatabaseManager $dbManager;
 
     private const PATH_CONFIG = 'config/';
     private const PATH_ROUTES = 'routes/';
 
     public function __construct(string $pathToApp)
     {
+        $this->initConfig($pathToApp);
+        $this->initRouter($pathToApp);
+        $this->initDatabase();
+    }
+
+    private function initConfig(string $pathToApp)
+    {
         Config::init($pathToApp . self::PATH_CONFIG);
+    }
+
+    private function initRouter(string $pathToApp)
+    {
         $routesFile = Config::get('router.routes.web');
         $this->router = new Router($pathToApp . self::PATH_ROUTES . $routesFile);
+    }
+
+    private function initDatabase()
+    {
+        $manager = new DatabaseManager;
+        $connections = Config::get('database.connections');
+        $default = Config::get('database.default_connection');
+        $manager->addConnection($connections[$default]);
+        $manager->setAsGlobal();
+        $manager->bootEloquent();
+        $this->dbManager = $manager;
     }
 
     public function run()

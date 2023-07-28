@@ -14,6 +14,17 @@ services:
       - ${PWD-.}/docker/Caddyfile:/etc/caddy/Caddyfile
       - ${PWD-.}/src:/src
 
+  mysql:
+    image: mysql:5.7
+    container_name: phase-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=phase
+      - MYSQL_USER=phase
+      - MYSQL_PASSWORD=secret
+    ports:
+      - "3306:3306"
+
   php-fpm:
     build:
       context: ${PWD-.}

@@ -22,7 +22,7 @@ use Phase\Http\Phase\Phase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class ExamplePhase extends Phase
+class DoThing extends Phase
 {
     public function handle(Dot $state): Response
     {
@@ -59,7 +59,7 @@ class ExamplePhase extends Phase
 A definition for a route with just one phase associated with it looks like this:
 
 ```php
-$r->addRoute('GET', '/example/{param}', [ExamplePhase::class]);
+$r->addRoute('GET', '/example/{param}', [DoThing::class]);
 ```
 
 The main issue with phases is the rigid interface. There's no DI or anything like that yet, and being forced to use the same `handle` method for every phase you implement (as opposed to pointing routes to custom methods) is not a great experience. I'm focusing on ways to improve that aspect.

@@ -9,9 +9,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 abstract class Phase implements IPhase
 {
-    private readonly Closure $next;
-    private readonly Request $request;
-    private readonly array $params;
+    protected readonly Closure $next;
+    protected readonly Request $request;
+    protected readonly array $params;
 
     public function __construct(Closure $next, Request $request, array $params)
     {
